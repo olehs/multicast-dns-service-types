@@ -34,7 +34,7 @@ tape('stringifies', function (t) {
 
 tape('parses', function (t) {
   t.same(type.parse('_http._tcp.local'), {
-	instance: null,
+    instance: null,
     name: 'http',
     protocol: 'tcp',
     parentDomain: 'local',
@@ -42,7 +42,7 @@ tape('parses', function (t) {
     subtypes: []
   })
   t.same(type.parse('_http._tcp.FoobarsLaptop.local'), {
-	instance: null,
+    instance: null,
     name: 'http',
     protocol: 'tcp',
     parentDomain: 'local',
@@ -50,7 +50,7 @@ tape('parses', function (t) {
     subtypes: []
   })
   t.same(type.parse('TheService._http._tcp.FoobarsLaptop.local'), {
-	instance: 'TheService',
+    instance: 'TheService',
     name: 'http',
     protocol: 'tcp',
     parentDomain: 'local',
@@ -58,7 +58,7 @@ tape('parses', function (t) {
     subtypes: []
   })
   t.same(type.parse('foo._sub._http._tcp.FoobarsLaptop.local'), {
-	instance: null,
+    instance: null,
     name: 'http',
     protocol: 'tcp',
     parentDomain: 'local',
@@ -66,11 +66,19 @@ tape('parses', function (t) {
     subtypes: ['foo']
   })
   t.same(type.parse('bar.foo._sub._http._tcp.FoobarsLaptop.local'), {
-	instance: null,
+    instance: null,
     name: 'http',
     protocol: 'tcp',
     parentDomain: 'local',
     serviceDomain: 'FoobarsLaptop',
+    subtypes: ['bar', 'foo']
+  })
+  t.same(type.parse('bar.foo._sub._http._tcp.Foobars.example.com'), {
+    instance: null,
+    name: 'http',
+    protocol: 'tcp',
+    parentDomain: 'example.com',
+    serviceDomain: 'Foobars',
     subtypes: ['bar', 'foo']
   })
   t.end()
