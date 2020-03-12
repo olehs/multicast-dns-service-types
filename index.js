@@ -47,7 +47,8 @@ exports.parse = function (str) {
   // Find protocol index
   var protoIndex = parts.indexOf('_tcp')
   if (protoIndex === -1) protoIndex = parts.indexOf('_udp')
-  if (protoIndex === -1) {
+
+  if (protoIndex !== -1) {
   // Remove leading _
     for (var i = 0; i < parts.length; i++) {
       if (parts[i][0] !== '_') continue
